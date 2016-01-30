@@ -10,6 +10,9 @@ requirejs.config({
         "ngRoute": "../angular-route",
         "ngSanitize": "../angular-sanitize",
         "mainCtrls": "./mainControllers",
+        "loginCtrl": "./loginController",
+        "routerCfg": "./configRouter",
+        "serviceFactory": "./serviceHandler",
         "ui.bootstrap": "../angular-ui/ui-bootstrap-tpls"
     },
     shim: {

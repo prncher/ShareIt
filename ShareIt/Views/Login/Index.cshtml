@@ -4,9 +4,11 @@
     <meta charset=utf-8 />
     <meta http-equiv=X-UA-Compatible content="IE=edge">
     <meta name=viewport content="width=device-width, initial-scale=1">
+    <link rel="Shortcut Icon" type="image/ico" href="~/Content/image/favicon.ico">
     <title>Share It</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" />
     <script data-main="/Scripts/main" src="~/Scripts/require.js"></script>
 </head>
 <body  ng-controller="MainController as ctrl">
@@ -36,8 +38,24 @@
         </div>
     </div>
     <div id="container" class="container leftrightjustify">
-        <p>Name : {{name}}</p>
-        <p>LastName : {{lastName}}</p>
+        <h3 ng-show="ctrl.loggedIn">{{ctrl.loggedInUser.FirstName + " " + ctrl.loggedInUser.LastName}} is logged in.</h3>
+        <h3 ng-show="ctrl.message.length">{{ctrl.message}}</h3>
+        <hr />
+        <div ng-view></div>
+        <div ng-hide="ctrl.loggedIn || ctrl.location.path() !== '/'" class="col-lg-4 col-lg-offset-4 form-main">
+            <h2>Please Login</h2>
+            <form name="loginForm" ng-submit="loginForm.$valid && ctrl.login()" novalidate>
+                <div class="form-group">
+                    <label>User Name :</label>
+                    <input type="text" ng-model="ctrl.user.userName" placeholder="Enter user name" class="ng-pristine ng-valid form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" ng-model="ctrl.user.password" placeholder="***********" class="ng-pristine ng-valid form-control" required>
+                </div>
+                <input type="submit" class="btn btn-primary btn-default" value="Login" required />
+            </form>
+        </div>
     </div>
 </body>
 </html>
